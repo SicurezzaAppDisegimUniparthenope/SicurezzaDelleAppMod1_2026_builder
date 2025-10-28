@@ -1,24 +1,21 @@
 services:
   ctf:
+    container_name: phoenixctf
+    image: phoenixctf:latest
     hostname: phoenixctf
-    platform: linux/amd64
     build:
       context: .
       dockerfile: Dockerfile
-      platforms:
-        - linux/amd64
       args:
         CUID: "${CUID}"
         CGID: "${CGID}"
         SUID: "${SUID}"
         SGID: "${SGID}"
         PARALLEL_BUILDS: "${PARALLEL_BUILDS}"
+      tags:
+        - ghcr.io/sicurezzasppdisegimuniparthenope/phoenixctf:latest
+      x-bake:
+        platforms:
+          - linux/amd64
+          - linux/arm64
     privileged: true
-    ports:
-      - "2222:22"
-    volumes:
-      - homes:/home
-      - ./data:/home/user/ctf
-volumes:
-  homes:
-    driver: local
