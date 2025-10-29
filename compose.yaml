@@ -13,7 +13,7 @@ services:
         SGID: "${SGID}"
         PARALLEL_BUILDS: "${PARALLEL_BUILDS}"
       tags:
-        - ghcr.io/sicurezzasppdisegimuniparthenope/phoenixctf:latest
+        - ghcr.io/bruand81/phoenixctf:latest
       x-bake:
         platforms:
           - linux/amd64

@@ -31,12 +31,12 @@ COPY tools/install_ctf.arm64.sh /root/install_ctf.arm64.sh
 RUN mkdir /opt/ctf_tools
 RUN chmod 755 /opt/ctf_tools
 
-RUN if [ "$TARGETARCH" = "amd64" ]; then \
+RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then \
         /bin/bash /root/install_ctf.amd64.sh && rm /root/install_ctf.*.sh; \
-    elif [ "$TARGETARCH" = "arm64" ]; then \
+    elif [ "$(dpkg --print-architecture)" = "arm64" ]; then \
         /bin/bash /root/install_ctf.arm64.sh && rm /root/install_ctf.*.sh; \
     else \
-        echo "Unsupported architecture: $TARGETARCH" && exit 1; \
+        echo "Unsupported architecture: $(dpkg --print-architecture)" && exit 1; \
     fi
 
 FROM ctf_tools AS ctf_phoenix
@@ -52,16 +52,16 @@ RUN wget https://github.com/ExploitEducation/Phoenix/releases/download/v1.0.0-al
 COPY tools/postinst_amd64.sh /root/postinst_amd64.sh
 COPY tools/postinst_arm64.sh /root/postinst_arm64.sh
 
-RUN if [ "$TARGETARCH" = "amd64" ]; then \
+RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then \
         mv /root/phoenix_amd64.deb /root/phoenix.deb; \
         mv /root/phoenix_arm64.deb /root/phoenix_oth.deb; \
         cp /root/postinst_arm64.sh /root/postinst.sh; \
-    elif [ "$TARGETARCH" = "arm64" ]; then \
+    elif [ "$(dpkg --print-architecture)" = "arm64" ]; then \
         mv /root/phoenix_arm64.deb /root/phoenix.deb; \
         mv /root/phoenix_amd64.deb /root/phoenix_oth.deb; \
         cp /root/postinst_amd64.sh /root/postinst.sh; \
     else \
-        echo "Unsupported architecture: $TARGETARCH" && exit 1; \
+        echo "Unsupported architecture: $(dpkg --print-architecture)" && exit 1; \
     fi
 
 RUN dpkg -i /root/phoenix.deb && rm /root/phoenix.deb
@@ -71,7 +71,14 @@ RUN rm -rf /root/tmp/
 RUN rm /root/phoenix_oth.deb
 RUN rm /root/postinst*
 
-RUN python2 -m pip install --upgrade pwntools
+RUN python2 -m pip install --upgrade pip
+RUN if [ "$(dpkg --print-architecture)" = "amd64" ]; then \
+        python2 -m pip install --upgrade pwntools; \
+    elif [ "$(dpkg --print-architecture)" = "arm64" ]; then \
+        echo "Skipping pwntools install on arm64"; \
+    else \
+        echo "Unsupported architecture: $(dpkg --print-architecture)" && exit 1; \
+    fi
 RUN apt update
 RUN apt install -y pipx
 RUN pipx ensurepath
