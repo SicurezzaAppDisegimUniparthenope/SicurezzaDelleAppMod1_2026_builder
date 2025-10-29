@@ -13,13 +13,13 @@ services:
         SGID: "${SGID}"
         PARALLEL_BUILDS: "${PARALLEL_BUILDS}"
       tags:
-        - ghcr.io/bruand81/phoenixctf:latest
+        - ghcr.io/sicurezzaappdisegimuniparthenope/sicurezzadelleappmod1_2026_builder:latest
       labels:
         - org.opencontainers.image.source=https://github.com/SicurezzaAppDisegimUniparthenope/SicurezzaDelleAppMod1_2026_builder
         - org.opencontainers.image.title=phoenixctf
         - org.opencontainers.image.description=Phoenix CTF Challenge Builder Environment per il corso di Sicurezza delle Applizazioni Modulo 1 2026 presso il DISEGIM dell'università Parthenope
         - org.opencontainers.image.licenses=MIT
-        - version=1.0.1
+        - version=1.0.0
       x-bake:
         platforms:
           - linux/amd64
