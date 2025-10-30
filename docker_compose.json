@@ -1,0 +1,44 @@
+{
+  "group": {
+    "default": {
+      "targets": [
+        "ctf"
+      ]
+    }
+  },
+  "target": {
+    "ctf": {
+      "context": ".",
+      "dockerfile": "Dockerfile",
+      "args": {
+        "CGID": "1001",
+        "CUID": "1001",
+        "PARALLEL_BUILDS": "30",
+        "SGID": "1002",
+        "SUID": "1002"
+      },
+      "labels": {
+        "org.opencontainers.image.description": "Phoenix CTF Challenge Builder Environment per il corso di Sicurezza delle Applizazioni Modulo 1 2026 presso il DISEGIM dell'università Parthenope",
+        "org.opencontainers.image.licenses": "MIT",
+        "org.opencontainers.image.source": "https://github.com/SicurezzaAppDisegimUniparthenope/SicurezzaDelleAppMod1_2026_builder",
+        "org.opencontainers.image.title": "phoenixctf",
+        "version": "1.0.2"
+      },
+      "tags": [
+        "ghcr.io/sicurezzaappdisegimuniparthenope/sicurezzadelleappmod1_2026_builder:latest",
+        "ghcr.io/sicurezzaappdisegimuniparthenope/sicurezzadelleappmod1_2026_builder:1.0.3"
+      ],
+      "annotations": {
+        "org.opencontainers.image.description": "Phoenix CTF Challenge Builder Environment per il corso di Sicurezza delle Applizazioni Modulo 1 2026 presso il DISEGIM dell'università Parthenope",
+        "org.opencontainers.image.licenses": "MIT",
+        "org.opencontainers.image.source": "https://github.com/SicurezzaAppDisegimUniparthenope/SicurezzaDelleAppMod1_2026_builder",
+        "org.opencontainers.image.title": "PhoenixCTF",
+        "version": "1.0.3"
+      },
+      "platforms": [
+        "linux/amd64",
+        "linux/arm64"
+      ]
+    }
+  }
+}
