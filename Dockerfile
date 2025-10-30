@@ -88,6 +88,12 @@ RUN apt autoremove -y
 
 FROM ctf_phoenix AS ctf_final
 
+LABEL org.opencontainers.image.source="https://github.com/SicurezzaAppDisegimUniparthenope/SicurezzaDelleAppMod1_2026_builder"
+LABEL org.opencontainers.image.title="phoenixctf"
+LABEL org.opencontainers.image.description="Phoenix CTF Challenge Builder Environment per il corso di Sicurezza delle Applicazioni Modulo 1 2026 presso il DISEGIM dell'università Parthenope"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL version="1.0.2"
+
 ARG CUID=1001
 ARG CGID=1001
 ARG SUID=1002
