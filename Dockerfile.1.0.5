@@ -1,0 +1,11 @@
+FROM ghcr.io/sicurezzaappdisegimuniparthenope/sicurezzadelleappmod1_2026_builder:1.0.3
+LABEL org.opencontainers.image.version="1.0.5"
+LABEL org.opencontainers.image.source="https://github.com/SicurezzaAppDisegimUniparthenope/SicurezzaDelleAppMod1_2026_builder"
+LABEL org.opencontainers.image.title="Phoenix CTF Challenge Builder Environment"
+LABEL org.opencontainers.image.description="Phoenix CTF Challenge Builder Environment per il corso di Sicurezza delle Applicazioni Modulo 1 2026 presso il DISEGIM dell'università Parthenope"
+LABEL org.opencontainers.image.licenses="MIT"
+
+RUN echo '' >> /etc/motd
+RUN echo 'Phoenix - brought to you by https://exploit.education/phoenix/' >> /etc/motd
+RUN echo 'Enjoying Phoenix? Consider donating - https://exploit.education/donate/' >> /etc/motd
+ENTRYPOINT ["/root/entrypoint.sh"]
